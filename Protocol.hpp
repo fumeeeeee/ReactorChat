@@ -7,15 +7,16 @@
 #include "logger/log_macros.hpp"
 
 #define MAX_NAMEBUFFER 64
+
 // 定义消息类型枚举
 enum MSG_type 
 {
-    INITIAL,  // 初始化消息
-    JOIN,    // 加入聊天室
-    EXIT,   //退出聊天室
-    GROUP_MSG,   //群组消息
-    FILE_MSG, //文件消息
-    FAILED   // 失败消息
+    INITIAL,
+    JOIN,
+    EXIT,
+    GROUP_MSG,
+    FILE_MSG,
+    FAILED
 };
 
 // enum_to_string
@@ -36,9 +37,9 @@ inline const char* getMessageTypeName(MSG_type type)
 // 定义消息头结构
 struct MSG_header 
 {
-    char sender_name[MAX_NAMEBUFFER];// 发送者名称
-    MSG_type Type;      // 消息类型
-    size_t length;   /// 消息长度
+    char sender_name[MAX_NAMEBUFFER];
+    MSG_type Type;
+    size_t length;
 };
 
 // 消息编码函数
@@ -52,6 +53,7 @@ inline std::vector<char> encodeMessage(MSG_type type, const std::string& msg, co
 
     std::vector<char> packet(sizeof(header) + msg.length());
     memcpy(packet.data(), &header, sizeof(header));
+    //data()指向 vector 底层数组第一个元素的指针
     memcpy(packet.data() + sizeof(header), msg.c_str(), msg.length());
     
     LOG_DEBUG("[发送] 消息类型: {}, 发送者: {}, 长度: {}, 内容: {}", 
