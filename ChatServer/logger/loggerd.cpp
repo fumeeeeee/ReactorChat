@@ -24,8 +24,7 @@ void Daemonize() {
     if (fork() > 0) exit(0);
     umask(0);
     chdir("/");
-    // 保留标准输出用于调试
-    // fclose(stdin); fclose(stdout); fclose(stderr);
+    fclose(stdin); fclose(stdout); fclose(stderr);
 }
 
 std::string GetLogFileName() {
@@ -88,10 +87,10 @@ int main() {
     // 设置socket权限
     chmod(SOCKET_PATH, 0666);
 
-    std::cout << "日志守护进程启动，等待接收日志..." << std::endl;
+    Daemonize();
 
     std::map<std::string, std::ofstream> logFiles;
-    char buffer[4096];  // 增加缓冲区大小
+    char buffer[4096]; 
 
     while (running) {
         ssize_t n = recv(server_fd, buffer, sizeof(buffer) - 1, 0);
@@ -99,16 +98,10 @@ int main() {
             buffer[n] = '\0';
             std::string msg(buffer);
             
-            // 添加调试输出
-            std::cout << "收到日志: " << msg << std::endl;
-
             std::ofstream& log = GetLogStream(logFiles);
             if (log.is_open()) {
                 log << msg << std::endl;
                 log.flush();
-                std::cout << "日志已写入文件" << std::endl;
-            } else {
-                std::cerr << "无法写入日志文件" << std::endl;
             }
         } else if (n < 0) {
             std::cerr << "接收消息失败: " << strerror(errno) << std::endl;
