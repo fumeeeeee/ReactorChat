@@ -2,11 +2,12 @@
 
 #include "Reactor.hpp"
 #include "ReactorServer.hpp"
-#include "../protocol/Protocol.hpp"
+#include "protocol/Protocol.hpp"
 #include <string>
 #include <vector>
 #include <mutex>
 #include <queue>
+#include <sys/ioctl.h>  // for ioctl, FIONREAD
 
 class ReactorServer;
 
@@ -38,10 +39,18 @@ private:
     bool handleCompleteMessage(const MSG_header &header, const std::string &msg);
     bool handleJoinMessage(const MSG_header &header);
     void handleGroupMessage(const MSG_header &header, const std::string &msg);
-    void handleFileMessage(const MSG_header &header);
     void handleExitMessage();
-    bool processMessages();
-    bool processFileTransfer();
+    
+    // 消息处理相关
+    void processMessages();
+    bool processOneMessage();
+    bool handleRegularMessage(const MSG_header &header);
+    
+    // 文件传输相关方法
+    bool handleFileStartMessage(const MSG_header &header);
+    bool handleFileDataMessage(const MSG_header &header);
+    bool handleFileEndMessage(const MSG_header &header);
+    void resetFileTransferState();
 
     int client_fd_;
     ReactorServer *server_;
@@ -50,4 +59,11 @@ private:
     std::queue<std::vector<char>> write_queue_;
     std::mutex write_mutex_;
     std::mutex read_buffer_mutex_;
+
+    // 文件传输状态
+    bool is_receiving_file_;           // 是否正在接收文件
+    FileInfo current_file_info_;       // 当前文件信息
+    size_t received_file_bytes_;       // 已接收的文件字节数
+    std::vector<char> file_buffer_;    // 文件数据缓冲区
+    std::mutex file_receive_mutex_; // 文件接收互斥锁
 };

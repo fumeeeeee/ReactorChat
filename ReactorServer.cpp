@@ -11,90 +11,19 @@
 #include <queue>
 #include <chrono>
 
-// ServerAcceptor实现 
-ServerAcceptor::ServerAcceptor(int listen_fd, ReactorServer *server)
-    : listen_fd_(listen_fd), server_(server)
-{
-    LOG_DEBUG("创建ServerAcceptor，fd: {}", listen_fd_);
-}
-
-ServerAcceptor::~ServerAcceptor()
-{
-    LOG_DEBUG("销毁ServerAcceptor，fd: {}", listen_fd_);
-}
-
-void ServerAcceptor::handleRead()
-{
-    // 边缘触发模式，需要循环接受所有连接
-    while (true)
-    {
-        struct sockaddr_in client_addr;
-        socklen_t client_len = sizeof(client_addr);
-
-        int client_fd = accept(listen_fd_, (struct sockaddr *)&client_addr, &client_len);
-        if (client_fd < 0)
-        {
-            if (errno == EAGAIN || errno == EWOULDBLOCK)
-            {
-                break; // 没有更多连接
-            }
-            LOG_ERROR("接受连接失败: {}", strerror(errno));
-            return;
-        }
-
-        // 设置非阻塞模式
-        int flags = fcntl(client_fd, F_GETFL, 0);
-        if (fcntl(client_fd, F_SETFL, flags | O_NONBLOCK) < 0)
-        {
-            LOG_ERROR("设置客户端非阻塞模式失败: {}", strerror(errno));
-            close(client_fd);
-            continue;
-        }
-
-        // 生成客户端地址字符串
-        char addr_str[INET_ADDRSTRLEN];
-        inet_ntop(AF_INET, &client_addr.sin_addr, addr_str, INET_ADDRSTRLEN);
-        std::string address = std::string(addr_str) + ":" + std::to_string(ntohs(client_addr.sin_port));
-
-        // 创建客户端处理器
-        auto client_handler = std::make_shared<ClientHandler>(client_fd, address, server_);
-
-        // 注册到Reactor
-        if (server_->getReactor().registerHandler(client_handler, EventType::READ))
-        {
-            server_->addClient(client_handler);
-            LOG_INFO("新客户端连接: {} (fd: {})", address, client_fd);
-        }
-        else
-        {
-            LOG_ERROR("注册客户端处理器失败，fd: {}", client_fd);
-            close(client_fd);
-        }
-    }
-}
-
-void ServerAcceptor::handleWrite()
-{
-    LOG_WARN("ServerAcceptor收到写事件，这不应该发生");
-}
-
-void ServerAcceptor::handleError()
-{
-    LOG_ERROR("ServerAcceptor发生错误，fd: {}", listen_fd_);
-}
-
-// ReactorServer实现
+// ReactorServer初始化线程池
 ReactorServer::ReactorServer(int port, size_t thread_count)
     : port_(port), listen_fd_(-1)
 {
     if (thread_count == 0)
     {
         thread_count = std::thread::hardware_concurrency() * 2;
-        if (thread_count == 0) thread_count = 4;
+        if (thread_count == 0)
+            thread_count = 4;
     }
     thread_pool_ = std::make_shared<ThreadPool>(thread_count);
     reactor_.setThreadPool(thread_pool_);
-    LOG_INFO("ReactorServer初始化，端口: {}, 线程数: {}", port_, thread_count);
+    LOG_DEBUG("ReactorServer初始化，端口: {}, 线程数: {}", port_, thread_count);
 }
 
 ReactorServer::~ReactorServer()
@@ -106,8 +35,10 @@ void ReactorServer::start()
 {
     try
     {
-        initializeServer();
-        reactor_thread_ = std::thread([this]() { reactor_.run(); });
+        initializeServer(); // 初始化监听socket,初始化reactor,注册ServerAcceptor到reactor
+        // 创建单线程reactor并运行
+        reactor_thread_ = std::thread([this]()
+                                      { reactor_.run(); });
         LOG_INFO("ReactorServer启动成功，监听端口: {}", port_);
     }
     catch (const std::exception &e)
@@ -134,6 +65,17 @@ void ReactorServer::stop()
         std::lock_guard<std::mutex> lock(clients_mutex_);
         clients_.clear();
     }
+
+    // 通知main线程停止
+    {
+        std::lock_guard<std::mutex> lock(mtx);
+        running = false;
+    }
+    {
+        std::lock_guard<std::mutex> lock(mtx);
+        running = false;
+    }
+    cv.notify_all();
     LOG_INFO("ReactorServer已停止");
 }
 
@@ -174,76 +116,62 @@ void ReactorServer::broadcastMessage(const std::vector<char> &message, int exclu
     std::vector<std::shared_ptr<ClientHandler>> clients_copy;
     {
         std::lock_guard<std::mutex> lock(clients_mutex_);
-        for (const auto &pair : clients_) {
-            if (pair.first != exclude_fd) {
+        for (const auto &pair : clients_)
+        {
+            if (pair.first != exclude_fd)
+            {
                 clients_copy.push_back(pair.second);
             }
         }
     }
 
-    LOG_DEBUG("广播消息给 {} 个客户端，消息大小: {} 字节", 
+    LOG_DEBUG("广播消息给 {} 个客户端，消息总大小: {} 字节",
               clients_copy.size(), message.size());
 
     size_t success_count = 0;
-    for (auto &client : clients_copy) {
-        if (client->sendMessage(message)) {
+    for (auto &client : clients_copy)
+    {
+        if (client->sendMessage(message))
+        {
             success_count++;
         }
     }
-    
+
     LOG_DEBUG("成功发送给 {}/{} 个客户端", success_count, clients_copy.size());
 }
 
 void ReactorServer::syncUserListForClient(int target_fd)
 {
     auto target_client = getClient(target_fd);
-    if (!target_client) return;
+    if (!target_client)
+        return;
 
     std::vector<std::string> users;
     {
         std::lock_guard<std::mutex> lock(clients_mutex_);
-        for (const auto& pair : clients_) {
+        for (const auto &pair : clients_)
+        {
             // 列表包含除自己外的所有已登录用户
-            if (pair.first != target_fd && pair.second->isNameSet()) {
+            if (pair.first != target_fd && pair.second->isNameSet())
+            {
                 users.push_back(pair.second->getName());
             }
         }
     }
 
-    if (users.empty()) return;
+    if (users.empty())
+        return;
 
     std::ostringstream oss;
-    for (size_t i = 0; i < users.size(); ++i) {
+    for (size_t i = 0; i < users.size(); ++i)
+    {
         oss << users[i] << (i == users.size() - 1 ? "" : ",");
     }
     std::string user_list = oss.str();
 
-    MSG_header header;
-    header.Type = INITIAL; // 使用INITIAL类型发送用户列表
-    header.length = user_list.length();
-    std::strncpy(header.sender_name, "SERVER", sizeof(header.sender_name) - 1);
-    header.sender_name[sizeof(header.sender_name) - 1] = '\0';
+    target_client->sendMessage(encodeMessage(INITIAL, user_list, "SERVER"));
 
-    std::vector<char> message(sizeof(header) + header.length);
-    memcpy(message.data(), &header, sizeof(header));
-    memcpy(message.data() + sizeof(header), user_list.c_str(), user_list.length());
-
-    target_client->sendMessage(message);
     LOG_INFO("向 {} (fd: {}) 发送用户列表: [{}]", target_client->getName(), target_fd, user_list);
-}
-
-std::vector<std::string> ReactorServer::getOnlineUsers() const
-{
-    std::lock_guard<std::mutex> lock(clients_mutex_);
-    std::vector<std::string> users;
-    for (const auto &pair : clients_)
-    {
-        if (pair.second->isNameSet())
-        {
-            users.push_back(pair.second->getName());
-        }
-    }
-    return users;
 }
 
 void ReactorServer::initializeServer()
@@ -289,5 +217,12 @@ void ReactorServer::createListenSocket()
         close(listen_fd_);
         throw std::runtime_error("监听失败: " + std::string(strerror(errno)));
     }
-    LOG_INFO("创建监听socket成功，fd: {}, port: {}", listen_fd_, port_);
+    LOG_DEBUG("创建监听socket成功，fd: {}, port: {}", listen_fd_, port_);
+}
+
+void ReactorServer::waitStop()
+{
+    std::unique_lock<std::mutex> lock(mtx);
+    cv.wait(lock, [this]
+            { return !running; });
 }

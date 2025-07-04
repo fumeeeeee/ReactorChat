@@ -2,6 +2,7 @@
 
 #include "Reactor.hpp"
 #include "protocol/Protocol.hpp"
+#include "ServerAcceptor.hpp"
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -12,6 +13,7 @@
 #include <netinet/in.h>
 #include <chrono>
 #include <thread>
+#include <condition_variable>
 
 // 前向声明
 class ReactorServer;
@@ -27,24 +29,6 @@ struct Client
     int fd;
 };
 
-// 服务器监听器 - 处理新连接
-class ServerAcceptor : public EventHandler
-{
-public:
-    explicit ServerAcceptor(int listen_fd, ReactorServer *server);
-    ~ServerAcceptor() override;
-
-    void handleRead() override;
-    void handleWrite() override;
-    void handleError() override;
-    int getFd() const override { return listen_fd_; }
-
-private:
-    int listen_fd_;
-    ReactorServer *server_;
-};
-
-// Reactor模式的聊天室服务器
 class ReactorServer
 {
 public:
@@ -59,6 +43,7 @@ public:
     void start();
     void stop();
     bool isRunning() const;
+    void waitStop();
 
     // 客户端管理
     void addClient(std::shared_ptr<ClientHandler> client);
@@ -68,9 +53,6 @@ public:
     // 消息广播
     void broadcastMessage(const std::vector<char> &message, int exclude_fd = -1);
     void syncUserListForClient(int target_fd);
-    // 获取在线用户列表
-    std::vector<std::string> getOnlineUsers() const;
-
     // Reactor访问
     Reactor &getReactor() { return reactor_; }
 
@@ -92,4 +74,9 @@ private:
 
     // 服务器监听器
     std::shared_ptr<ServerAcceptor> acceptor_;
+
+    // 通知主线程退出
+    bool running = true;
+    std::mutex mtx;
+    std::condition_variable cv;
 };
