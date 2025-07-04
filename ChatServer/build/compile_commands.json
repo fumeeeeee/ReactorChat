@@ -1,0 +1,50 @@
+[
+{
+  "directory": "/root/ChatServerOPEN/build",
+  "command": "/usr/bin/g++ -DFMT_SHARED -I/root/ChatServerOPEN -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror=return-type -fsanitize=address -fno-omit-frame-pointer -o CMakeFiles/chatserver.dir/main.cpp.o -c /root/ChatServerOPEN/main.cpp",
+  "file": "/root/ChatServerOPEN/main.cpp",
+  "output": "CMakeFiles/chatserver.dir/main.cpp.o"
+},
+{
+  "directory": "/root/ChatServerOPEN/build",
+  "command": "/usr/bin/g++ -DFMT_SHARED -I/root/ChatServerOPEN -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror=return-type -fsanitize=address -fno-omit-frame-pointer -o CMakeFiles/chatserver.dir/reactor/Reactor.cpp.o -c /root/ChatServerOPEN/reactor/Reactor.cpp",
+  "file": "/root/ChatServerOPEN/reactor/Reactor.cpp",
+  "output": "CMakeFiles/chatserver.dir/reactor/Reactor.cpp.o"
+},
+{
+  "directory": "/root/ChatServerOPEN/build",
+  "command": "/usr/bin/g++ -DFMT_SHARED -I/root/ChatServerOPEN -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror=return-type -fsanitize=address -fno-omit-frame-pointer -o CMakeFiles/chatserver.dir/reactor/ClientHandler.cpp.o -c /root/ChatServerOPEN/reactor/ClientHandler.cpp",
+  "file": "/root/ChatServerOPEN/reactor/ClientHandler.cpp",
+  "output": "CMakeFiles/chatserver.dir/reactor/ClientHandler.cpp.o"
+},
+{
+  "directory": "/root/ChatServerOPEN/build",
+  "command": "/usr/bin/g++ -DFMT_SHARED -I/root/ChatServerOPEN -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror=return-type -fsanitize=address -fno-omit-frame-pointer -o CMakeFiles/chatserver.dir/reactor/ReactorServer.cpp.o -c /root/ChatServerOPEN/reactor/ReactorServer.cpp",
+  "file": "/root/ChatServerOPEN/reactor/ReactorServer.cpp",
+  "output": "CMakeFiles/chatserver.dir/reactor/ReactorServer.cpp.o"
+},
+{
+  "directory": "/root/ChatServerOPEN/build",
+  "command": "/usr/bin/g++ -DFMT_SHARED -I/root/ChatServerOPEN -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror=return-type -fsanitize=address -fno-omit-frame-pointer -o CMakeFiles/chatserver.dir/reactor/ServerAcceptor.cpp.o -c /root/ChatServerOPEN/reactor/ServerAcceptor.cpp",
+  "file": "/root/ChatServerOPEN/reactor/ServerAcceptor.cpp",
+  "output": "CMakeFiles/chatserver.dir/reactor/ServerAcceptor.cpp.o"
+},
+{
+  "directory": "/root/ChatServerOPEN/build",
+  "command": "/usr/bin/g++ -DFMT_SHARED -I/root/ChatServerOPEN -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror=return-type -fsanitize=address -fno-omit-frame-pointer -o CMakeFiles/chatserver.dir/threadpool/ThreadPool.cpp.o -c /root/ChatServerOPEN/threadpool/ThreadPool.cpp",
+  "file": "/root/ChatServerOPEN/threadpool/ThreadPool.cpp",
+  "output": "CMakeFiles/chatserver.dir/threadpool/ThreadPool.cpp.o"
+},
+{
+  "directory": "/root/ChatServerOPEN/build",
+  "command": "/usr/bin/g++ -DFMT_SHARED -I/root/ChatServerOPEN -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror=return-type -fsanitize=address -fno-omit-frame-pointer -o CMakeFiles/chatserver.dir/logger/LoggerClient.cpp.o -c /root/ChatServerOPEN/logger/LoggerClient.cpp",
+  "file": "/root/ChatServerOPEN/logger/LoggerClient.cpp",
+  "output": "CMakeFiles/chatserver.dir/logger/LoggerClient.cpp.o"
+},
+{
+  "directory": "/root/ChatServerOPEN/build",
+  "command": "/usr/bin/g++ -DFMT_SHARED  -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror=return-type -fsanitize=address -fno-omit-frame-pointer -o CMakeFiles/loggerd.dir/logger/loggerd.cpp.o -c /root/ChatServerOPEN/logger/loggerd.cpp",
+  "file": "/root/ChatServerOPEN/logger/loggerd.cpp",
+  "output": "CMakeFiles/loggerd.dir/logger/loggerd.cpp.o"
+}
+]

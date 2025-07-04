@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -fsanitize=address CMakeFiles/test_signal.dir/test_signal.cpp.o CMakeFiles/test_signal.dir/logger/LoggerClient.cpp.o -o test_signal  -lpthread /usr/lib/x86_64-linux-gnu/libfmt.so.9.1.0 
