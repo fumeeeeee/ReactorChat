@@ -4,7 +4,7 @@
 #include <sstream>
 #include <iomanip>
 
-enum class LogLevel 
+enum class LogLevel
 {
     DEBUG,
     INFO,
@@ -12,7 +12,7 @@ enum class LogLevel
     ERROR
 };
 
-struct LogContext 
+struct LogContext
 {
     std::string filename;
     int line;
@@ -21,11 +21,11 @@ struct LogContext
     std::chrono::system_clock::time_point timestamp;
 };
 
-class LoggerClient 
+class LoggerClient
 {
 public:
-    static void Send(LogLevel level, const std::string& message, const std::string& filename, int line, const std::string& function);
-    static std::string FormatLogMessage(const LogContext& context, const std::string& message);
+    static void Send(LogLevel level, const std::string &message, const std::string &filename, int line, const std::string &function);
+    static std::string FormatLogMessage(const LogContext &context, const std::string &message);
     static std::string GetLevelString(LogLevel level);
-    static std::string GetTimestampString(const std::chrono::system_clock::time_point& time);
+    static std::string GetTimestampString(const std::chrono::system_clock::time_point &time);
 };

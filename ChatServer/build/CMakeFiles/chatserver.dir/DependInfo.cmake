@@ -8,12 +8,15 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/root/ChatServerOPEN/authClient/Authentication.cpp" "CMakeFiles/chatserver.dir/authClient/Authentication.cpp.o" "gcc" "CMakeFiles/chatserver.dir/authClient/Authentication.cpp.o.d"
   "/root/ChatServerOPEN/logger/LoggerClient.cpp" "CMakeFiles/chatserver.dir/logger/LoggerClient.cpp.o" "gcc" "CMakeFiles/chatserver.dir/logger/LoggerClient.cpp.o.d"
   "/root/ChatServerOPEN/main.cpp" "CMakeFiles/chatserver.dir/main.cpp.o" "gcc" "CMakeFiles/chatserver.dir/main.cpp.o.d"
   "/root/ChatServerOPEN/reactor/ClientHandler.cpp" "CMakeFiles/chatserver.dir/reactor/ClientHandler.cpp.o" "gcc" "CMakeFiles/chatserver.dir/reactor/ClientHandler.cpp.o.d"
   "/root/ChatServerOPEN/reactor/Reactor.cpp" "CMakeFiles/chatserver.dir/reactor/Reactor.cpp.o" "gcc" "CMakeFiles/chatserver.dir/reactor/Reactor.cpp.o.d"
   "/root/ChatServerOPEN/reactor/ReactorServer.cpp" "CMakeFiles/chatserver.dir/reactor/ReactorServer.cpp.o" "gcc" "CMakeFiles/chatserver.dir/reactor/ReactorServer.cpp.o.d"
   "/root/ChatServerOPEN/reactor/ServerAcceptor.cpp" "CMakeFiles/chatserver.dir/reactor/ServerAcceptor.cpp.o" "gcc" "CMakeFiles/chatserver.dir/reactor/ServerAcceptor.cpp.o.d"
+  "/root/ChatServerOPEN/rpcGenerated/Auth.grpc.pb.cc" "CMakeFiles/chatserver.dir/rpcGenerated/Auth.grpc.pb.cc.o" "gcc" "CMakeFiles/chatserver.dir/rpcGenerated/Auth.grpc.pb.cc.o.d"
+  "/root/ChatServerOPEN/rpcGenerated/Auth.pb.cc" "CMakeFiles/chatserver.dir/rpcGenerated/Auth.pb.cc.o" "gcc" "CMakeFiles/chatserver.dir/rpcGenerated/Auth.pb.cc.o.d"
   "/root/ChatServerOPEN/threadpool/ThreadPool.cpp" "CMakeFiles/chatserver.dir/threadpool/ThreadPool.cpp.o" "gcc" "CMakeFiles/chatserver.dir/threadpool/ThreadPool.cpp.o.d"
   )
 

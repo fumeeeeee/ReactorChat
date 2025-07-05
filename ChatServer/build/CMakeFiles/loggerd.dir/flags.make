@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++
 CXX_DEFINES = -DFMT_SHARED
 
-CXX_INCLUDES = 
+CXX_INCLUDES = -I/root/ChatServerOPEN -I/root/.local/include
 
-CXX_FLAGS = -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror=return-type -fsanitize=address -fno-omit-frame-pointer
+CXX_FLAGS = -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror=return-type -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer -g -O1
 

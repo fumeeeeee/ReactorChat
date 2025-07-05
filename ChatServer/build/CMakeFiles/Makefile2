@@ -65,6 +65,7 @@ CMAKE_BINARY_DIR = /root/ChatServerOPEN/build
 # The main recursive "all" target.
 all: CMakeFiles/chatserver.dir/all
 all: CMakeFiles/loggerd.dir/all
+all: CMakeFiles/authserver.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -74,6 +75,7 @@ preinstall:
 # The main recursive "clean" target.
 clean: CMakeFiles/chatserver.dir/clean
 clean: CMakeFiles/loggerd.dir/clean
+clean: CMakeFiles/authserver.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -83,12 +85,12 @@ clean: CMakeFiles/loggerd.dir/clean
 CMakeFiles/chatserver.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatserver.dir/build.make CMakeFiles/chatserver.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatserver.dir/build.make CMakeFiles/chatserver.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/root/ChatServerOPEN/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target chatserver"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/root/ChatServerOPEN/build/CMakeFiles --progress-num=6,7,8,9,10,11,12,13,14,15,16 "Built target chatserver"
 .PHONY : CMakeFiles/chatserver.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/chatserver.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/ChatServerOPEN/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ChatServerOPEN/build/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/chatserver.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /root/ChatServerOPEN/build/CMakeFiles 0
 .PHONY : CMakeFiles/chatserver.dir/rule
@@ -109,7 +111,7 @@ CMakeFiles/chatserver.dir/clean:
 CMakeFiles/loggerd.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/loggerd.dir/build.make CMakeFiles/loggerd.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/loggerd.dir/build.make CMakeFiles/loggerd.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/root/ChatServerOPEN/build/CMakeFiles --progress-num=9,10 "Built target loggerd"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/root/ChatServerOPEN/build/CMakeFiles --progress-num=17,18 "Built target loggerd"
 .PHONY : CMakeFiles/loggerd.dir/all
 
 # Build rule for subdir invocation for target.
@@ -127,6 +129,32 @@ loggerd: CMakeFiles/loggerd.dir/rule
 CMakeFiles/loggerd.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/loggerd.dir/build.make CMakeFiles/loggerd.dir/clean
 .PHONY : CMakeFiles/loggerd.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/authserver.dir
+
+# All Build rule for target.
+CMakeFiles/authserver.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/authserver.dir/build.make CMakeFiles/authserver.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/authserver.dir/build.make CMakeFiles/authserver.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/root/ChatServerOPEN/build/CMakeFiles --progress-num=1,2,3,4,5 "Built target authserver"
+.PHONY : CMakeFiles/authserver.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/authserver.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ChatServerOPEN/build/CMakeFiles 5
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/authserver.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/ChatServerOPEN/build/CMakeFiles 0
+.PHONY : CMakeFiles/authserver.dir/rule
+
+# Convenience name for target.
+authserver: CMakeFiles/authserver.dir/rule
+.PHONY : authserver
+
+# clean rule for target.
+CMakeFiles/authserver.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/authserver.dir/build.make CMakeFiles/authserver.dir/clean
+.PHONY : CMakeFiles/authserver.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
