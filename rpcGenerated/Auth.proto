@@ -1,0 +1,20 @@
+syntax = "proto3";
+package auth;
+
+service AuthService 
+{
+  rpc Login (AuthRequest) returns (AuthResponse);
+  rpc Register (AuthRequest) returns (AuthResponse);
+}
+
+message AuthRequest 
+{
+  string username = 1;
+  bytes encrypted_hash = 2; // 加密后的密码哈希
+}
+
+message AuthResponse 
+{
+  bool success = 1;
+  string message = 2;
+}
