@@ -223,32 +223,38 @@ ChatServer_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 ChatServer_SOURCE_DIR:STATIC=/root/ChatServerOPEN
 
-//Path to a library.
-OPENSSL_CRYPTO_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libcrypto.so
-
 //Path to a file.
-OPENSSL_INCLUDE_DIR:PATH=/usr/include
+Protobuf_INCLUDE_DIR:PATH=/root/.local/include
 
 //Path to a library.
-OPENSSL_SSL_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libssl.so
-
-//Arguments to supply to pkg-config
-PKG_CONFIG_ARGN:STRING=
-
-//pkg-config executable
-PKG_CONFIG_EXECUTABLE:FILEPATH=PKG_CONFIG_EXECUTABLE-NOTFOUND
-
-//Path to a file.
-SQLite3_INCLUDE_DIR:PATH=/usr/include
+Protobuf_LIBRARY_DEBUG:FILEPATH=/root/.local/lib/libprotobuf.a
 
 //Path to a library.
-SQLite3_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libsqlite3.so
+Protobuf_LIBRARY_RELEASE:FILEPATH=/root/.local/lib/libprotobuf.a
+
+//Path to a library.
+Protobuf_LITE_LIBRARY_DEBUG:FILEPATH=/root/.local/lib/libprotobuf-lite.a
+
+//Path to a library.
+Protobuf_LITE_LIBRARY_RELEASE:FILEPATH=/root/.local/lib/libprotobuf-lite.a
+
+//The Google Protocol Buffers Compiler
+Protobuf_PROTOC_EXECUTABLE:FILEPATH=/root/.local/bin/protoc
+
+//Path to a library.
+Protobuf_PROTOC_LIBRARY_DEBUG:FILEPATH=/root/.local/lib/libprotoc.a
+
+//Path to a library.
+Protobuf_PROTOC_LIBRARY_RELEASE:FILEPATH=/root/.local/lib/libprotoc.a
+
+//The directory containing a CMake configuration file for absl.
+absl_DIR:PATH=/root/.local/lib/cmake/absl
 
 //The directory containing a CMake configuration file for fmt.
 fmt_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/fmt
 
-//The directory containing a CMake configuration file for nlohmann_json.
-nlohmann_json_DIR:PATH=nlohmann_json_DIR-NOTFOUND
+//The directory containing a CMake configuration file for gRPC.
+gRPC_DIR:PATH=/root/.local/lib/cmake/grpc
 
 
 ########################
@@ -331,6 +337,8 @@ CMAKE_GENERATOR_INSTANCE:INTERNAL=
 CMAKE_GENERATOR_PLATFORM:INTERNAL=
 //Name of generator toolset.
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
+//Test CMAKE_HAVE_LIBC_PTHREAD
+CMAKE_HAVE_LIBC_PTHREAD:INTERNAL=1
 //Source directory with the top level CMakeLists.txt file for this
 // project
 CMAKE_HOME_DIRECTORY:INTERNAL=/root/ChatServerOPEN
@@ -398,46 +406,26 @@ CMAKE_TAPI-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
-//Details about finding OpenSSL
-FIND_PACKAGE_MESSAGE_DETAILS_OpenSSL:INTERNAL=[/usr/lib/x86_64-linux-gnu/libcrypto.so][/usr/include][c ][v3.0.13()]
-//Details about finding SQLite3
-FIND_PACKAGE_MESSAGE_DETAILS_SQLite3:INTERNAL=[/usr/include][/usr/lib/x86_64-linux-gnu/libsqlite3.so][v3.45.1()]
-//ADVANCED property for variable: OPENSSL_CRYPTO_LIBRARY
-OPENSSL_CRYPTO_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: OPENSSL_INCLUDE_DIR
-OPENSSL_INCLUDE_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: OPENSSL_SSL_LIBRARY
-OPENSSL_SSL_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: PKG_CONFIG_ARGN
-PKG_CONFIG_ARGN-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
-PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: SQLite3_INCLUDE_DIR
-SQLite3_INCLUDE_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: SQLite3_LIBRARY
-SQLite3_LIBRARY-ADVANCED:INTERNAL=1
+//Details about finding Protobuf
+FIND_PACKAGE_MESSAGE_DETAILS_Protobuf:INTERNAL=[/root/.local/lib/libprotobuf.a][/root/.local/include][v6.31.0()]
+//Details about finding Threads
+FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
+//ADVANCED property for variable: Protobuf_INCLUDE_DIR
+Protobuf_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Protobuf_LIBRARY_DEBUG
+Protobuf_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Protobuf_LIBRARY_RELEASE
+Protobuf_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Protobuf_LITE_LIBRARY_DEBUG
+Protobuf_LITE_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Protobuf_LITE_LIBRARY_RELEASE
+Protobuf_LITE_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Protobuf_PROTOC_EXECUTABLE
+Protobuf_PROTOC_EXECUTABLE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Protobuf_PROTOC_LIBRARY_DEBUG
+Protobuf_PROTOC_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Protobuf_PROTOC_LIBRARY_RELEASE
+Protobuf_PROTOC_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
 //linker supports push/pop state
 _CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED:INTERNAL=TRUE
-_OPENSSL_CFLAGS:INTERNAL=
-_OPENSSL_CFLAGS_I:INTERNAL=
-_OPENSSL_CFLAGS_OTHER:INTERNAL=
-_OPENSSL_FOUND:INTERNAL=
-_OPENSSL_INCLUDEDIR:INTERNAL=
-_OPENSSL_LIBDIR:INTERNAL=
-_OPENSSL_LIBS:INTERNAL=
-_OPENSSL_LIBS_L:INTERNAL=
-_OPENSSL_LIBS_OTHER:INTERNAL=
-_OPENSSL_LIBS_PATHS:INTERNAL=
-_OPENSSL_MODULE_NAME:INTERNAL=
-_OPENSSL_PREFIX:INTERNAL=
-_OPENSSL_STATIC_CFLAGS:INTERNAL=
-_OPENSSL_STATIC_CFLAGS_I:INTERNAL=
-_OPENSSL_STATIC_CFLAGS_OTHER:INTERNAL=
-_OPENSSL_STATIC_LIBDIR:INTERNAL=
-_OPENSSL_STATIC_LIBS:INTERNAL=
-_OPENSSL_STATIC_LIBS_L:INTERNAL=
-_OPENSSL_STATIC_LIBS_OTHER:INTERNAL=
-_OPENSSL_STATIC_LIBS_PATHS:INTERNAL=
-_OPENSSL_VERSION:INTERNAL=
-__pkg_config_checked__OPENSSL:INTERNAL=1
 

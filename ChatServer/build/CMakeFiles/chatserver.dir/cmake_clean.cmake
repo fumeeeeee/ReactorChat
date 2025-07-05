@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/chatserver.dir/authClient/Authentication.cpp.o"
+  "CMakeFiles/chatserver.dir/authClient/Authentication.cpp.o.d"
   "CMakeFiles/chatserver.dir/logger/LoggerClient.cpp.o"
   "CMakeFiles/chatserver.dir/logger/LoggerClient.cpp.o.d"
   "CMakeFiles/chatserver.dir/main.cpp.o"
@@ -11,6 +13,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/chatserver.dir/reactor/ReactorServer.cpp.o.d"
   "CMakeFiles/chatserver.dir/reactor/ServerAcceptor.cpp.o"
   "CMakeFiles/chatserver.dir/reactor/ServerAcceptor.cpp.o.d"
+  "CMakeFiles/chatserver.dir/rpcGenerated/Auth.grpc.pb.cc.o"
+  "CMakeFiles/chatserver.dir/rpcGenerated/Auth.grpc.pb.cc.o.d"
+  "CMakeFiles/chatserver.dir/rpcGenerated/Auth.pb.cc.o"
+  "CMakeFiles/chatserver.dir/rpcGenerated/Auth.pb.cc.o.d"
   "CMakeFiles/chatserver.dir/threadpool/ThreadPool.cpp.o"
   "CMakeFiles/chatserver.dir/threadpool/ThreadPool.cpp.o.d"
   "chatserver"

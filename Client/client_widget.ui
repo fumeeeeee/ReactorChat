@@ -22,23 +22,37 @@
     <height>500</height>
    </size>
   </property>
-  <property name="baseSize">
-   <size>
-    <width>0</width>
-    <height>0</height>
-   </size>
-  </property>
   <property name="windowTitle">
    <string>Online ChatRoom</string>
   </property>
-  <property name="windowOpacity">
-   <double>1.000000000000000</double>
-  </property>
   <property name="styleSheet">
-   <string notr="true">#client_widget
-{
-	border-image: url(:/backgroud/ATRI2.jpg);
-}</string>
+   <string notr="true">
+    QWidget {
+        background-color: #e0e0e0;
+    }
+    QPushButton {
+        background-color: rgba(255, 255, 255, 200);
+        color: #000;
+        border: 1px solid #999;
+        border-radius: 6px;
+        font-size: 10pt;
+        padding: 4px;
+    }
+    QPushButton:hover {
+        background-color: #d0e7ff;
+    }
+    QLineEdit, QTextBrowser, QListWidget {
+        background-color: rgba(255, 255, 255, 230);
+        color: #000;
+        border: 1px solid #aaa;
+        border-radius: 6px;
+        font-size: 10pt;
+    }
+    QLabel {
+        color: #000;
+        font-size: 10pt;
+    }
+   </string>
   </property>
   <widget class="QPushButton" name="msgsender_btn">
    <property name="geometry">
@@ -48,9 +62,6 @@
      <width>81</width>
      <height>31</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgba(255, 255, 255, 20);</string>
    </property>
    <property name="text">
     <string>发送消息</string>
@@ -65,18 +76,6 @@
      <height>361</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgba(255, 255, 255, 20);
-color: rgb(0, 0, 0);</string>
-   </property>
-   <property name="lineWidth">
-    <number>0</number>
-   </property>
   </widget>
   <widget class="QLineEdit" name="sender_edit">
    <property name="geometry">
@@ -86,9 +85,6 @@ color: rgb(0, 0, 0);</string>
      <width>551</width>
      <height>61</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgba(255, 255, 255, 20);</string>
    </property>
    <property name="frame">
     <bool>true</bool>
@@ -106,9 +102,6 @@ color: rgb(0, 0, 0);</string>
      <height>31</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgba(255, 255, 255, 20);</string>
-   </property>
    <property name="text">
     <string>发送文件</string>
    </property>
@@ -123,7 +116,7 @@ color: rgb(0, 0, 0);</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgba(255, 255, 255, 20);</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>退出登录</string>
@@ -140,13 +133,8 @@ color: rgb(0, 0, 0);</string>
    </property>
    <property name="font">
     <font>
-     <family>宋体</family>
      <pointsize>10</pointsize>
     </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgba(255, 255, 255, 20);
-color: rgb(0, 0, 0);</string>
    </property>
   </widget>
   <widget class="QWidget" name="horizontalLayoutWidget">
@@ -161,9 +149,6 @@ color: rgb(0, 0, 0);</string>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <widget class="QLabel" name="time">
-      <property name="styleSheet">
-       <string notr="true">color: rgb(0, 0, 0);</string>
-      </property>
       <property name="text">
        <string>登入时间:</string>
       </property>
@@ -171,9 +156,6 @@ color: rgb(0, 0, 0);</string>
     </item>
     <item>
      <widget class="QLabel" name="timing">
-      <property name="styleSheet">
-       <string notr="true">color: rgb(0, 0, 0);</string>
-      </property>
       <property name="text">
        <string>已登入:</string>
       </property>
@@ -190,9 +172,6 @@ color: rgb(0, 0, 0);</string>
      <height>29</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(0, 0, 0);</string>
-   </property>
    <property name="text">
     <string>当前用户:</string>
    </property>
@@ -202,12 +181,9 @@ color: rgb(0, 0, 0);</string>
     <rect>
      <x>580</x>
      <y>0</y>
-     <width>101</width>
+     <width>111</width>
      <height>31</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(0, 0, 0);</string>
    </property>
    <property name="text">
     <string>当前在线用户列表:</string>

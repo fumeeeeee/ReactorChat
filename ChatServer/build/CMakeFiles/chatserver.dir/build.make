@@ -167,6 +167,48 @@ CMakeFiles/chatserver.dir/logger/LoggerClient.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/chatserver.dir/logger/LoggerClient.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/ChatServerOPEN/logger/LoggerClient.cpp -o CMakeFiles/chatserver.dir/logger/LoggerClient.cpp.s
 
+CMakeFiles/chatserver.dir/authClient/Authentication.cpp.o: CMakeFiles/chatserver.dir/flags.make
+CMakeFiles/chatserver.dir/authClient/Authentication.cpp.o: /root/ChatServerOPEN/authClient/Authentication.cpp
+CMakeFiles/chatserver.dir/authClient/Authentication.cpp.o: CMakeFiles/chatserver.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/root/ChatServerOPEN/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/chatserver.dir/authClient/Authentication.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/chatserver.dir/authClient/Authentication.cpp.o -MF CMakeFiles/chatserver.dir/authClient/Authentication.cpp.o.d -o CMakeFiles/chatserver.dir/authClient/Authentication.cpp.o -c /root/ChatServerOPEN/authClient/Authentication.cpp
+
+CMakeFiles/chatserver.dir/authClient/Authentication.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/chatserver.dir/authClient/Authentication.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/ChatServerOPEN/authClient/Authentication.cpp > CMakeFiles/chatserver.dir/authClient/Authentication.cpp.i
+
+CMakeFiles/chatserver.dir/authClient/Authentication.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/chatserver.dir/authClient/Authentication.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/ChatServerOPEN/authClient/Authentication.cpp -o CMakeFiles/chatserver.dir/authClient/Authentication.cpp.s
+
+CMakeFiles/chatserver.dir/rpcGenerated/Auth.pb.cc.o: CMakeFiles/chatserver.dir/flags.make
+CMakeFiles/chatserver.dir/rpcGenerated/Auth.pb.cc.o: /root/ChatServerOPEN/rpcGenerated/Auth.pb.cc
+CMakeFiles/chatserver.dir/rpcGenerated/Auth.pb.cc.o: CMakeFiles/chatserver.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/root/ChatServerOPEN/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/chatserver.dir/rpcGenerated/Auth.pb.cc.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/chatserver.dir/rpcGenerated/Auth.pb.cc.o -MF CMakeFiles/chatserver.dir/rpcGenerated/Auth.pb.cc.o.d -o CMakeFiles/chatserver.dir/rpcGenerated/Auth.pb.cc.o -c /root/ChatServerOPEN/rpcGenerated/Auth.pb.cc
+
+CMakeFiles/chatserver.dir/rpcGenerated/Auth.pb.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/chatserver.dir/rpcGenerated/Auth.pb.cc.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/ChatServerOPEN/rpcGenerated/Auth.pb.cc > CMakeFiles/chatserver.dir/rpcGenerated/Auth.pb.cc.i
+
+CMakeFiles/chatserver.dir/rpcGenerated/Auth.pb.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/chatserver.dir/rpcGenerated/Auth.pb.cc.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/ChatServerOPEN/rpcGenerated/Auth.pb.cc -o CMakeFiles/chatserver.dir/rpcGenerated/Auth.pb.cc.s
+
+CMakeFiles/chatserver.dir/rpcGenerated/Auth.grpc.pb.cc.o: CMakeFiles/chatserver.dir/flags.make
+CMakeFiles/chatserver.dir/rpcGenerated/Auth.grpc.pb.cc.o: /root/ChatServerOPEN/rpcGenerated/Auth.grpc.pb.cc
+CMakeFiles/chatserver.dir/rpcGenerated/Auth.grpc.pb.cc.o: CMakeFiles/chatserver.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/root/ChatServerOPEN/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/chatserver.dir/rpcGenerated/Auth.grpc.pb.cc.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/chatserver.dir/rpcGenerated/Auth.grpc.pb.cc.o -MF CMakeFiles/chatserver.dir/rpcGenerated/Auth.grpc.pb.cc.o.d -o CMakeFiles/chatserver.dir/rpcGenerated/Auth.grpc.pb.cc.o -c /root/ChatServerOPEN/rpcGenerated/Auth.grpc.pb.cc
+
+CMakeFiles/chatserver.dir/rpcGenerated/Auth.grpc.pb.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/chatserver.dir/rpcGenerated/Auth.grpc.pb.cc.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/ChatServerOPEN/rpcGenerated/Auth.grpc.pb.cc > CMakeFiles/chatserver.dir/rpcGenerated/Auth.grpc.pb.cc.i
+
+CMakeFiles/chatserver.dir/rpcGenerated/Auth.grpc.pb.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/chatserver.dir/rpcGenerated/Auth.grpc.pb.cc.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/ChatServerOPEN/rpcGenerated/Auth.grpc.pb.cc -o CMakeFiles/chatserver.dir/rpcGenerated/Auth.grpc.pb.cc.s
+
 # Object files for target chatserver
 chatserver_OBJECTS = \
 "CMakeFiles/chatserver.dir/main.cpp.o" \
@@ -175,7 +217,10 @@ chatserver_OBJECTS = \
 "CMakeFiles/chatserver.dir/reactor/ReactorServer.cpp.o" \
 "CMakeFiles/chatserver.dir/reactor/ServerAcceptor.cpp.o" \
 "CMakeFiles/chatserver.dir/threadpool/ThreadPool.cpp.o" \
-"CMakeFiles/chatserver.dir/logger/LoggerClient.cpp.o"
+"CMakeFiles/chatserver.dir/logger/LoggerClient.cpp.o" \
+"CMakeFiles/chatserver.dir/authClient/Authentication.cpp.o" \
+"CMakeFiles/chatserver.dir/rpcGenerated/Auth.pb.cc.o" \
+"CMakeFiles/chatserver.dir/rpcGenerated/Auth.grpc.pb.cc.o"
 
 # External object files for target chatserver
 chatserver_EXTERNAL_OBJECTS =
@@ -187,10 +232,114 @@ chatserver: CMakeFiles/chatserver.dir/reactor/ReactorServer.cpp.o
 chatserver: CMakeFiles/chatserver.dir/reactor/ServerAcceptor.cpp.o
 chatserver: CMakeFiles/chatserver.dir/threadpool/ThreadPool.cpp.o
 chatserver: CMakeFiles/chatserver.dir/logger/LoggerClient.cpp.o
+chatserver: CMakeFiles/chatserver.dir/authClient/Authentication.cpp.o
+chatserver: CMakeFiles/chatserver.dir/rpcGenerated/Auth.pb.cc.o
+chatserver: CMakeFiles/chatserver.dir/rpcGenerated/Auth.grpc.pb.cc.o
 chatserver: CMakeFiles/chatserver.dir/build.make
 chatserver: /usr/lib/x86_64-linux-gnu/libfmt.so.9.1.0
+chatserver: /root/.local/lib/libgrpc++.a
+chatserver: /root/.local/lib/libprotobuf.a
+chatserver: /root/.local/lib/libgrpc.a
+chatserver: /root/.local/lib/libupb_json_lib.a
+chatserver: /root/.local/lib/libupb_textformat_lib.a
+chatserver: /root/.local/lib/libupb_lex_lib.a
+chatserver: /root/.local/lib/libupb_reflection_lib.a
+chatserver: /root/.local/lib/libupb_mini_descriptor_lib.a
+chatserver: /root/.local/lib/libupb_wire_lib.a
+chatserver: /root/.local/lib/libutf8_range_lib.a
+chatserver: /root/.local/lib/libupb_message_lib.a
+chatserver: /root/.local/lib/libupb_mini_table_lib.a
+chatserver: /root/.local/lib/libupb_hash_lib.a
+chatserver: /root/.local/lib/libupb_base_lib.a
+chatserver: /root/.local/lib/libupb_mem_lib.a
+chatserver: /root/.local/lib/libre2.a
+chatserver: /root/.local/lib/libz.a
+chatserver: /root/.local/lib/libabsl_statusor.a
+chatserver: /root/.local/lib/libcares.a
+chatserver: /root/.local/lib/libgpr.a
+chatserver: /root/.local/lib/libabsl_status.a
+chatserver: /root/.local/lib/libabsl_flags_internal.a
+chatserver: /root/.local/lib/libabsl_flags_reflection.a
+chatserver: /root/.local/lib/libabsl_raw_hash_set.a
+chatserver: /root/.local/lib/libabsl_cord.a
+chatserver: /root/.local/lib/libabsl_cordz_info.a
+chatserver: /root/.local/lib/libabsl_cord_internal.a
+chatserver: /root/.local/lib/libabsl_cordz_functions.a
+chatserver: /root/.local/lib/libabsl_cordz_handle.a
+chatserver: /root/.local/lib/libabsl_crc_cord_state.a
+chatserver: /root/.local/lib/libabsl_crc32c.a
+chatserver: /root/.local/lib/libabsl_crc_internal.a
+chatserver: /root/.local/lib/libabsl_crc_cpu_detect.a
+chatserver: /root/.local/lib/libabsl_hashtablez_sampler.a
+chatserver: /root/.local/lib/libabsl_exponential_biased.a
+chatserver: /root/.local/lib/libabsl_flags_config.a
+chatserver: /root/.local/lib/libabsl_flags_program_name.a
+chatserver: /root/.local/lib/libabsl_flags_private_handle_accessor.a
+chatserver: /root/.local/lib/libabsl_flags_commandlineflag.a
+chatserver: /root/.local/lib/libabsl_flags_commandlineflag_internal.a
+chatserver: /root/.local/lib/libabsl_flags_marshalling.a
+chatserver: /root/.local/lib/libabsl_log_internal_check_op.a
+chatserver: /root/.local/lib/libabsl_leak_check.a
+chatserver: /root/.local/lib/libabsl_log_internal_conditions.a
+chatserver: /root/.local/lib/libabsl_log_internal_message.a
+chatserver: /root/.local/lib/libabsl_log_internal_nullguard.a
+chatserver: /root/.local/lib/libabsl_examine_stack.a
+chatserver: /root/.local/lib/libabsl_log_internal_format.a
+chatserver: /root/.local/lib/libabsl_str_format_internal.a
+chatserver: /root/.local/lib/libabsl_log_internal_structured_proto.a
+chatserver: /root/.local/lib/libabsl_log_internal_proto.a
+chatserver: /root/.local/lib/libabsl_log_internal_log_sink_set.a
+chatserver: /root/.local/lib/libabsl_log_globals.a
+chatserver: /root/.local/lib/libabsl_hash.a
+chatserver: /root/.local/lib/libabsl_city.a
+chatserver: /root/.local/lib/libabsl_bad_variant_access.a
+chatserver: /root/.local/lib/libabsl_low_level_hash.a
+chatserver: /root/.local/lib/libabsl_log_internal_globals.a
+chatserver: /root/.local/lib/libabsl_log_sink.a
+chatserver: /root/.local/lib/libabsl_log_entry.a
+chatserver: /root/.local/lib/libabsl_strerror.a
+chatserver: /root/.local/lib/libabsl_vlog_config_internal.a
+chatserver: /root/.local/lib/libabsl_log_internal_fnmatch.a
+chatserver: /root/.local/lib/libabsl_random_distributions.a
+chatserver: /root/.local/lib/libabsl_random_seed_sequences.a
+chatserver: /root/.local/lib/libabsl_random_internal_pool_urbg.a
+chatserver: /root/.local/lib/libabsl_random_internal_randen.a
+chatserver: /root/.local/lib/libabsl_random_internal_randen_hwaes.a
+chatserver: /root/.local/lib/libabsl_random_internal_randen_hwaes_impl.a
+chatserver: /root/.local/lib/libabsl_random_internal_randen_slow.a
+chatserver: /root/.local/lib/libabsl_random_internal_platform.a
+chatserver: /root/.local/lib/libabsl_random_internal_seed_material.a
+chatserver: /root/.local/lib/libabsl_bad_optional_access.a
+chatserver: /root/.local/lib/libabsl_random_seed_gen_exception.a
+chatserver: /root/.local/lib/libabsl_synchronization.a
+chatserver: /root/.local/lib/libabsl_stacktrace.a
+chatserver: /root/.local/lib/libabsl_symbolize.a
+chatserver: /root/.local/lib/libabsl_debugging_internal.a
+chatserver: /root/.local/lib/libabsl_demangle_internal.a
+chatserver: /root/.local/lib/libabsl_demangle_rust.a
+chatserver: /root/.local/lib/libabsl_decode_rust_punycode.a
+chatserver: /root/.local/lib/libabsl_utf8_for_code_point.a
+chatserver: /root/.local/lib/libabsl_graphcycles_internal.a
+chatserver: /root/.local/lib/libabsl_kernel_timeout_internal.a
+chatserver: /root/.local/lib/libabsl_malloc_internal.a
+chatserver: /root/.local/lib/libabsl_tracing_internal.a
+chatserver: /root/.local/lib/libabsl_time.a
+chatserver: /root/.local/lib/libabsl_strings.a
+chatserver: /root/.local/lib/libabsl_strings_internal.a
+chatserver: /root/.local/lib/libabsl_string_view.a
+chatserver: /root/.local/lib/libabsl_throw_delegate.a
+chatserver: /root/.local/lib/libabsl_int128.a
+chatserver: /root/.local/lib/libabsl_base.a
+chatserver: /root/.local/lib/libabsl_raw_logging_internal.a
+chatserver: /root/.local/lib/libabsl_log_severity.a
+chatserver: /root/.local/lib/libabsl_spinlock_wait.a
+chatserver: /root/.local/lib/libabsl_civil_time.a
+chatserver: /root/.local/lib/libabsl_time_zone.a
+chatserver: /root/.local/lib/libssl.a
+chatserver: /root/.local/lib/libcrypto.a
+chatserver: /root/.local/lib/libaddress_sorting.a
 chatserver: CMakeFiles/chatserver.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/root/ChatServerOPEN/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable chatserver"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/root/ChatServerOPEN/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable chatserver"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/chatserver.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

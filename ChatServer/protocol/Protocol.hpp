@@ -11,16 +11,17 @@
 
 /*
 协议设计:
+0. 消息头的length表示消息内容的长度，不包括头部
 1. 客户端请求连接后发送JOIN消息
-2. 服务器接收到JOIN消息后，回复INITIAL消息，包含在线用户列表,同时向其他客户端发送JOIN消息
+2. 服务器接收到JOIN消息后，回复INITIAL消息，数据为在线用户列表,同时向其他客户端发送JOIN消息
 3. 服务器接收到GROUP_MSG消息后，向所有在线用户广播该消息
 4. 文件传输协议：
-   - FILE_MSG: 文件传输开始，包含文件名和文件大小
-   - FILE_DATA: 文件数据块，length字段表示数据块大小
+   - FILE_MSG: 文件传输开始，数据为文件元数据--FileInfo
+   - FILE_DATA: 文件数据块
    - FILE_END: 文件传输结束标志
 5. 客户端发送EXIT消息时，服务器将其从在线用户列表中移除，并向其他用户广播该用户已退出
 */
-enum MSG_type 
+enum MSG_type
 {
     REGISTER,
     REGISTER_success,
@@ -33,34 +34,53 @@ enum MSG_type
     JOIN,
     EXIT,
     GROUP_MSG,
-    FILE_MSG,    // 文件传输开始，包含文件名和大小
-    FILE_DATA,   // 文件数据块
-    FILE_END     // 文件传输结束
+    FILE_MSG,
+    FILE_DATA,
+    FILE_END,
+    TEST,            // 新增测试协议类型
+    TEST_success     // 服务器对TEST协议的成功响应
 };
 
 // enum_to_string
-inline const char* getMessageTypeName(MSG_type type) 
+inline const char *getMessageTypeName(MSG_type type)
 {
-    switch (type) 
+    switch (type)
     {
-        case INITIAL: return "INITIAL";
-        case JOIN: return "JOIN";
-        case EXIT: return "EXIT";
-        case GROUP_MSG: return "GROUP_MSG";
-        case FILE_MSG: return "FILE_MSG";
-        case FILE_DATA: return "FILE_DATA";
-        case FILE_END: return "FILE_END";
-        default: return "UNKNOWN";
+    case REGISTER:
+        return "REGISTER";
+    case REGISTER_success:
+        return "REGISTER_success";
+    case REGISTER_failed:
+        return "REGISTER_failed";
+    case LOGIN:
+        return "LOGIN";
+    case LOGIN_success:
+        return "LOGIN_success";
+    case LOGIN_failed:
+        return "LOGIN_failed";
+    case INITIAL:
+        return "INITIAL";
+    case JOIN:
+        return "JOIN";
+    case EXIT:
+        return "EXIT";
+    case GROUP_MSG:
+        return "GROUP_MSG";
+    case FILE_MSG:
+        return "FILE_MSG";
+    case FILE_DATA:
+        return "FILE_DATA";
+    case FILE_END:
+        return "FILE_END";
+    default:
+        return "UNKNOWN";
     }
 }
 
 // 定义消息头结构
 // 这里的长度字段是指消息内容的长度，不包括头部
 // 头部包含发送者名称、消息类型和消息长度
-// FILE_MSG: length为文件名长度，后续跟文件名和文件大小
-// FILE_DATA: length为数据块大小，后续跟数据内容
-// FILE_END: length为0
-struct MSG_header 
+struct MSG_header
 {
     char sender_name[MAX_NAMEBUFFER];
     MSG_type Type;
@@ -74,8 +94,8 @@ struct FileInfo
     size_t file_size;
 };
 
-// 消息编码函数
-inline std::vector<char> encodeMessage(MSG_type type, const std::string& msg, const std::string& sender = "Server") 
+// 消息编码函数--将消息类型、发送者名称和消息内容编码为字节流(char数组)
+inline std::vector<char> encodeMessage(MSG_type type, const std::string &msg, const std::string &sender = "Server")
 {
     MSG_header header;
     strncpy(header.sender_name, sender.c_str(), MAX_NAMEBUFFER - 1);
@@ -86,28 +106,29 @@ inline std::vector<char> encodeMessage(MSG_type type, const std::string& msg, co
     std::vector<char> packet(sizeof(header) + msg.length());
     memcpy(packet.data(), &header, sizeof(header));
     memcpy(packet.data() + sizeof(header), msg.c_str(), msg.length());
-    
-    LOG_DEBUG("[发送] 消息类型: {}, 发送者: {}, 长度: {}, 内容: {}", 
+
+    LOG_DEBUG("[发送] 消息类型: {}, 发送者: {}, 长度: {}, 内容: {}",
               getMessageTypeName(type), sender, msg.length(), msg);
-    
+
     return packet;
 }
 
-inline std::vector<char> encodeMessage(const MSG_header &header, const std::string &msg) 
+// 消息编码函数--将消息头和消息内容编码为字节流(char数组)
+inline std::vector<char> encodeMessage(const MSG_header &header, const std::string &msg)
 {
     size_t total_size = sizeof(header) + header.length;
     std::vector<char> message(total_size);
     memcpy(message.data(), &header, sizeof(header));
     memcpy(message.data() + sizeof(header), msg.c_str(), msg.length());
-    
-    LOG_DEBUG("[发送] 消息类型: {}, 发送者: {}, 长度: {}, 内容: {}", 
+
+    LOG_DEBUG("[发送] 消息类型: {}, 发送者: {}, 长度: {}, 内容: {}",
               getMessageTypeName(header.Type), header.sender_name, header.length, msg);
-              
+
     return message;
 }
 
-// 编码文件开始消息
-inline std::vector<char> encodeFileStartMessage(const std::string& sender, const std::string& filename, size_t file_size)
+// 编码文件开始消息--发送者名称、文件名和文件大小
+inline std::vector<char> encodeFileStartMessage(const std::string &sender, const std::string &filename, size_t file_size)
 {
     MSG_header header;
     strncpy(header.sender_name, sender.c_str(), MAX_NAMEBUFFER - 1);
@@ -124,14 +145,14 @@ inline std::vector<char> encodeFileStartMessage(const std::string& sender, const
     memcpy(packet.data(), &header, sizeof(header));
     memcpy(packet.data() + sizeof(header), &file_info, sizeof(FileInfo));
 
-    LOG_DEBUG("[发送] 文件开始消息 - 发送者: {}, 文件名: {}, 大小: {}", 
+    LOG_DEBUG("[发送] 文件开始消息 - 发送者: {}, 文件名: {}, 大小: {}",
               sender, filename, file_size);
 
     return packet;
 }
 
 // 编码文件数据消息
-inline std::vector<char> encodeFileDataMessage(const std::string& sender, const std::vector<char>& data)
+inline std::vector<char> encodeFileDataMessage(const std::string &sender, const std::vector<char> &data)
 {
     MSG_header header;
     strncpy(header.sender_name, sender.c_str(), MAX_NAMEBUFFER - 1);
@@ -149,7 +170,7 @@ inline std::vector<char> encodeFileDataMessage(const std::string& sender, const 
 }
 
 // 编码文件结束消息
-inline std::vector<char> encodeFileEndMessage(const std::string& sender)
+inline std::vector<char> encodeFileEndMessage(const std::string &sender)
 {
     MSG_header header;
     strncpy(header.sender_name, sender.c_str(), MAX_NAMEBUFFER - 1);

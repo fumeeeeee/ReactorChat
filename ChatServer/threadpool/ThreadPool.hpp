@@ -14,18 +14,21 @@
 class ThreadPool
 {
 public:
-    //防止size_t自动隐式转换为threadpool
-    explicit ThreadPool(size_t threads = std::thread::hardware_concurrency()*2);
+    // 防止size_t自动隐式转换为threadpool
+    explicit ThreadPool(size_t threads = std::thread::hardware_concurrency() * 2);
     ~ThreadPool();
 
     // 禁用拷贝构造和赋值
     ThreadPool(const ThreadPool &) = delete;
     ThreadPool &operator=(const ThreadPool &) = delete;
 
-    // 提交任务到线程池
-    template <class F, class... Args>
-    auto enqueue(F &&f, Args &&...args)
+    // 提交任务到任务队列
+    template <class F, class... Args>   // 可变参数模板，在 此处 F表示可调用对象的类型，Args表示参数类型
+    auto enqueue(F &&f, Args &&...args) //  完美转发，可以接受左值、右值、lambda、函数指针、成员函数指针等各种可调用对象和参数
         -> std::future<std::invoke_result_t<F, Args...>>;
+    // auto与->组合,返回类型后置
+    // std::future<T>：表示一个异步操作的结果,通过 future.get() 在需要时获取任务的返回值（如果任务还没完成会阻塞等待）；
+    // std::invoke_result_t<F, Args...>：C++17 类型萃取工具，自动推断 F(Args...) 的返回类型
 
     // 获取线程池状态
     size_t getThreadCount() const { return threads_.size(); }
@@ -36,14 +39,15 @@ public:
     void shutdown();
 
 private:
-    // 工作线程
+    // 储存工作线程的vector
     std::vector<std::thread> threads_;
 
     // 任务队列
     std::queue<std::function<void()>> tasks_;
+    // 使用示例: std::function<int(int, double)> 只能存储可以用 (int, double) 调用并返回 int 的对象
 
     // 同步原语
-    mutable std::mutex queue_mutex_;
+    mutable std::mutex queue_mutex_; // 即使在 const 成员函数中也允许上锁
     std::condition_variable condition_;
 
     // 停止标志
@@ -56,17 +60,17 @@ private:
 // 模板方法实现
 template <class F, class... Args>
 auto ThreadPool::enqueue(F &&f, Args &&...args)
-    -> std::future<std::invoke_result_t<F, Args...>>//使用std::future<>实现异步任务提交返回值
+    -> std::future<std::invoke_result_t<F, Args...>>
 {
-
     using return_type = std::invoke_result_t<F, Args...>;
 
-    // 创建打包任务
-    // std::packeage_task用于包装可调用对象
-    auto task = std::make_shared<std::packaged_task<return_type()>>(
+    // 创建packaged_task对象指针task来包装可调用对象,(*task)()进行调用
+    // 使用示例: std::packaged_task<int(int, double)>
+    std::shared_ptr<std::packaged_task<return_type()>> task = std::make_shared<std::packaged_task<return_type()>>(
         std::bind(std::forward<F>(f), std::forward<Args>(args)...));
 
     std::future<return_type> res = task->get_future();
+    // get_future返回一个 std::future<T> 对象，允许在将来异步获取任务执行的结果
 
     {
         std::unique_lock<std::mutex> lock(queue_mutex_);
@@ -79,9 +83,7 @@ auto ThreadPool::enqueue(F &&f, Args &&...args)
 
         // 将任务添加到队列
         tasks_.emplace([task]()
-                        { 
-                            (*task)();
-                        });
+                       { (*task)(); });
     }
 
     // 通知一个等待的线程

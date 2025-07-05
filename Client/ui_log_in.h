@@ -11,113 +11,127 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QDialog>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_log_in
 {
 public:
-    QPushButton *LoginButton;
-    QPushButton *ExitButton;
-    QLabel *label_2;
-    QLineEdit *server_ip;
-    QLineEdit *user_name;
-    QLineEdit *server_port;
-    QLabel *label_5;
-    QLabel *label_3;
-    QLabel *label_4;
+    QVBoxLayout *verticalLayout;
+    QLabel *titleLabel;
+    QLineEdit *usernameEdit;
+    QLineEdit *passwordEdit;
+    QLabel *statusLabel;
+    QHBoxLayout *horizontalLayout;
+    QPushButton *loginButton;
+    QPushButton *registerButton;
 
-    void setupUi(QDialog *log_in)
+    void setupUi(QWidget *log_in)
     {
         if (log_in->objectName().isEmpty())
             log_in->setObjectName("log_in");
-        log_in->resize(400, 300);
-        log_in->setMinimumSize(QSize(400, 300));
-        log_in->setMaximumSize(QSize(400, 300));
-        log_in->setStyleSheet(QString::fromUtf8("#log_in\n"
-"{\n"
-"	image: url(:/backgroud/ATRI.jpg);\n"
-"}"));
-        LoginButton = new QPushButton(log_in);
-        LoginButton->setObjectName("LoginButton");
-        LoginButton->setGeometry(QRect(100, 200, 61, 31));
-        LoginButton->setAutoFillBackground(false);
-        LoginButton->setStyleSheet(QString::fromUtf8("background-color: rgba(255, 255, 255, 50);\n"
-"font: 700 9pt \"Microsoft YaHei UI\";\n"
-"text-decoration: underline;\n"
-""));
-        LoginButton->setFlat(true);
-        ExitButton = new QPushButton(log_in);
-        ExitButton->setObjectName("ExitButton");
-        ExitButton->setGeometry(QRect(240, 200, 61, 31));
-        ExitButton->setStyleSheet(QString::fromUtf8("background-color: rgba(255, 255, 255, 50);\n"
-"font: 700 9pt \"Microsoft YaHei UI\";\n"
-"text-decoration: underline;"));
-        ExitButton->setFlat(true);
-        label_2 = new QLabel(log_in);
-        label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(99, 100, 71, 20));
-        label_2->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
-        server_ip = new QLineEdit(log_in);
-        server_ip->setObjectName("server_ip");
-        server_ip->setGeometry(QRect(170, 100, 131, 20));
-        server_ip->setStyleSheet(QString::fromUtf8("background-color: rgba(255, 255, 255, 100);\n"
-"color: rgb(0, 0, 0);"));
-        server_ip->setFrame(false);
-        user_name = new QLineEdit(log_in);
-        user_name->setObjectName("user_name");
-        user_name->setGeometry(QRect(170, 160, 131, 20));
-        user_name->setStyleSheet(QString::fromUtf8("background-color: rgba(255, 255, 255, 100);\n"
-"color: rgb(0, 0, 0);"));
-        user_name->setFrame(false);
-        server_port = new QLineEdit(log_in);
-        server_port->setObjectName("server_port");
-        server_port->setGeometry(QRect(170, 130, 131, 20));
-        server_port->setStyleSheet(QString::fromUtf8("background-color: rgba(255, 255, 255, 100);\n"
-"color: rgb(0, 0, 0);"));
-        server_port->setFrame(false);
-        label_5 = new QLabel(log_in);
-        label_5->setObjectName("label_5");
-        label_5->setGeometry(QRect(80, 0, 251, 91));
-        label_3 = new QLabel(log_in);
-        label_3->setObjectName("label_3");
-        label_3->setGeometry(QRect(100, 130, 71, 20));
-        label_3->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
-        label_4 = new QLabel(log_in);
-        label_4->setObjectName("label_4");
-        label_4->setGeometry(QRect(99, 160, 71, 20));
-        label_4->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
-        label_5->raise();
-        LoginButton->raise();
-        ExitButton->raise();
-        label_2->raise();
-        server_ip->raise();
-        user_name->raise();
-        server_port->raise();
-        label_3->raise();
-        label_4->raise();
+        log_in->resize(360, 260);
+        log_in->setStyleSheet(QString::fromUtf8("\n"
+"    QWidget {\n"
+"        background-color: #f0f0f0;\n"
+"    }\n"
+"    QLineEdit {\n"
+"        border: 1px solid #aaa;\n"
+"        border-radius: 5px;\n"
+"        padding: 4px;\n"
+"        min-height: 30px;\n"
+"        font-size: 10pt;\n"
+"    }\n"
+"    QPushButton {\n"
+"        background-color: #0078d7;\n"
+"        color: white;\n"
+"        border-radius: 4px;\n"
+"        padding: 6px 12px;\n"
+"        font-size: 10pt;\n"
+"    }\n"
+"    QPushButton:hover {\n"
+"        background-color: #005999;\n"
+"    }\n"
+"    QLabel {\n"
+"        color: #555;\n"
+"        font-size: 9pt;\n"
+"    }\n"
+"    QLabel#titleLabel {\n"
+"        font-size: 16pt;\n"
+"        font-weight: bold;\n"
+"        color: #333;\n"
+"    }\n"
+"   "));
+        verticalLayout = new QVBoxLayout(log_in);
+        verticalLayout->setSpacing(12);
+        verticalLayout->setObjectName("verticalLayout");
+        verticalLayout->setContentsMargins(20, 20, 20, 20);
+        titleLabel = new QLabel(log_in);
+        titleLabel->setObjectName("titleLabel");
+        titleLabel->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        verticalLayout->addWidget(titleLabel);
+
+        usernameEdit = new QLineEdit(log_in);
+        usernameEdit->setObjectName("usernameEdit");
+        usernameEdit->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+
+        verticalLayout->addWidget(usernameEdit);
+
+        passwordEdit = new QLineEdit(log_in);
+        passwordEdit->setObjectName("passwordEdit");
+        passwordEdit->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        passwordEdit->setEchoMode(QLineEdit::EchoMode::Password);
+
+        verticalLayout->addWidget(passwordEdit);
+
+        statusLabel = new QLabel(log_in);
+        statusLabel->setObjectName("statusLabel");
+        QFont font;
+        font.setPointSize(9);
+        font.setItalic(true);
+        statusLabel->setFont(font);
+        statusLabel->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        verticalLayout->addWidget(statusLabel);
+
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setSpacing(15);
+        horizontalLayout->setObjectName("horizontalLayout");
+        loginButton = new QPushButton(log_in);
+        loginButton->setObjectName("loginButton");
+
+        horizontalLayout->addWidget(loginButton);
+
+        registerButton = new QPushButton(log_in);
+        registerButton->setObjectName("registerButton");
+
+        horizontalLayout->addWidget(registerButton);
+
+
+        verticalLayout->addLayout(horizontalLayout);
+
 
         retranslateUi(log_in);
-        QObject::connect(ExitButton, &QPushButton::clicked, log_in, qOverload<>(&QDialog::reject));
 
         QMetaObject::connectSlotsByName(log_in);
     } // setupUi
 
-    void retranslateUi(QDialog *log_in)
+    void retranslateUi(QWidget *log_in)
     {
-        log_in->setWindowTitle(QCoreApplication::translate("log_in", "Log in", nullptr));
-        LoginButton->setText(QCoreApplication::translate("log_in", "\347\231\273\345\275\225", nullptr));
-        ExitButton->setText(QCoreApplication::translate("log_in", "\351\200\200\345\207\272", nullptr));
-        label_2->setText(QCoreApplication::translate("log_in", "<html><head/><body><p><span style=\" font-weight:700; font-style:italic;\">\346\234\215\345\212\241\345\231\250IP</span></p></body></html>", nullptr));
-        server_ip->setText(QCoreApplication::translate("log_in", "127.0.0.1", nullptr));
-        server_port->setText(QCoreApplication::translate("log_in", "1234", nullptr));
-        label_5->setText(QCoreApplication::translate("log_in", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; font-weight:700; font-style:italic;\">\346\254\242\350\277\216\346\235\245\345\210\260Online ChatRoom</span></p></body></html>", nullptr));
-        label_3->setText(QCoreApplication::translate("log_in", "<html><head/><body><p><span style=\" font-weight:700; font-style:italic;\">\346\234\215\345\212\241\345\231\250\347\253\257\345\217\243</span></p></body></html>", nullptr));
-        label_4->setText(QCoreApplication::translate("log_in", "<html><head/><body><p><span style=\" font-weight:700; font-style:italic;\">\347\224\250\346\210\267\345\220\215</span></p></body></html>", nullptr));
+        log_in->setWindowTitle(QCoreApplication::translate("log_in", "\347\224\250\346\210\267\347\231\273\345\275\225", nullptr));
+        titleLabel->setText(QCoreApplication::translate("log_in", "\346\254\242\350\277\216\347\231\273\345\275\225 ChatRoom", nullptr));
+        usernameEdit->setPlaceholderText(QCoreApplication::translate("log_in", "\347\224\250\346\210\267\345\220\215", nullptr));
+        passwordEdit->setPlaceholderText(QCoreApplication::translate("log_in", "\345\257\206\347\240\201", nullptr));
+        statusLabel->setText(QString());
+        loginButton->setText(QCoreApplication::translate("log_in", "\347\231\273\345\275\225", nullptr));
+        registerButton->setText(QCoreApplication::translate("log_in", "\346\263\250\345\206\214", nullptr));
     } // retranslateUi
 
 };

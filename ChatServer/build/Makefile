@@ -142,6 +142,91 @@ loggerd/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/loggerd.dir/build.make CMakeFiles/loggerd.dir/build
 .PHONY : loggerd/fast
 
+#=============================================================================
+# Target rules for targets named authserver
+
+# Build rule for target.
+authserver: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 authserver
+.PHONY : authserver
+
+# fast build rule for target.
+authserver/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/authserver.dir/build.make CMakeFiles/authserver.dir/build
+.PHONY : authserver/fast
+
+authClient/Authentication.o: authClient/Authentication.cpp.o
+.PHONY : authClient/Authentication.o
+
+# target to build an object file
+authClient/Authentication.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatserver.dir/build.make CMakeFiles/chatserver.dir/authClient/Authentication.cpp.o
+.PHONY : authClient/Authentication.cpp.o
+
+authClient/Authentication.i: authClient/Authentication.cpp.i
+.PHONY : authClient/Authentication.i
+
+# target to preprocess a source file
+authClient/Authentication.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatserver.dir/build.make CMakeFiles/chatserver.dir/authClient/Authentication.cpp.i
+.PHONY : authClient/Authentication.cpp.i
+
+authClient/Authentication.s: authClient/Authentication.cpp.s
+.PHONY : authClient/Authentication.s
+
+# target to generate assembly for a file
+authClient/Authentication.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatserver.dir/build.make CMakeFiles/chatserver.dir/authClient/Authentication.cpp.s
+.PHONY : authClient/Authentication.cpp.s
+
+authServer/AuthServer.o: authServer/AuthServer.cpp.o
+.PHONY : authServer/AuthServer.o
+
+# target to build an object file
+authServer/AuthServer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/authserver.dir/build.make CMakeFiles/authserver.dir/authServer/AuthServer.cpp.o
+.PHONY : authServer/AuthServer.cpp.o
+
+authServer/AuthServer.i: authServer/AuthServer.cpp.i
+.PHONY : authServer/AuthServer.i
+
+# target to preprocess a source file
+authServer/AuthServer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/authserver.dir/build.make CMakeFiles/authserver.dir/authServer/AuthServer.cpp.i
+.PHONY : authServer/AuthServer.cpp.i
+
+authServer/AuthServer.s: authServer/AuthServer.cpp.s
+.PHONY : authServer/AuthServer.s
+
+# target to generate assembly for a file
+authServer/AuthServer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/authserver.dir/build.make CMakeFiles/authserver.dir/authServer/AuthServer.cpp.s
+.PHONY : authServer/AuthServer.cpp.s
+
+authServer/AuthServiceImpl.o: authServer/AuthServiceImpl.cpp.o
+.PHONY : authServer/AuthServiceImpl.o
+
+# target to build an object file
+authServer/AuthServiceImpl.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/authserver.dir/build.make CMakeFiles/authserver.dir/authServer/AuthServiceImpl.cpp.o
+.PHONY : authServer/AuthServiceImpl.cpp.o
+
+authServer/AuthServiceImpl.i: authServer/AuthServiceImpl.cpp.i
+.PHONY : authServer/AuthServiceImpl.i
+
+# target to preprocess a source file
+authServer/AuthServiceImpl.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/authserver.dir/build.make CMakeFiles/authserver.dir/authServer/AuthServiceImpl.cpp.i
+.PHONY : authServer/AuthServiceImpl.cpp.i
+
+authServer/AuthServiceImpl.s: authServer/AuthServiceImpl.cpp.s
+.PHONY : authServer/AuthServiceImpl.s
+
+# target to generate assembly for a file
+authServer/AuthServiceImpl.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/authserver.dir/build.make CMakeFiles/authserver.dir/authServer/AuthServiceImpl.cpp.s
+.PHONY : authServer/AuthServiceImpl.cpp.s
+
 logger/LoggerClient.o: logger/LoggerClient.cpp.o
 .PHONY : logger/LoggerClient.o
 
@@ -310,6 +395,60 @@ reactor/ServerAcceptor.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatserver.dir/build.make CMakeFiles/chatserver.dir/reactor/ServerAcceptor.cpp.s
 .PHONY : reactor/ServerAcceptor.cpp.s
 
+rpcGenerated/Auth.grpc.pb.o: rpcGenerated/Auth.grpc.pb.cc.o
+.PHONY : rpcGenerated/Auth.grpc.pb.o
+
+# target to build an object file
+rpcGenerated/Auth.grpc.pb.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatserver.dir/build.make CMakeFiles/chatserver.dir/rpcGenerated/Auth.grpc.pb.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/authserver.dir/build.make CMakeFiles/authserver.dir/rpcGenerated/Auth.grpc.pb.cc.o
+.PHONY : rpcGenerated/Auth.grpc.pb.cc.o
+
+rpcGenerated/Auth.grpc.pb.i: rpcGenerated/Auth.grpc.pb.cc.i
+.PHONY : rpcGenerated/Auth.grpc.pb.i
+
+# target to preprocess a source file
+rpcGenerated/Auth.grpc.pb.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatserver.dir/build.make CMakeFiles/chatserver.dir/rpcGenerated/Auth.grpc.pb.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/authserver.dir/build.make CMakeFiles/authserver.dir/rpcGenerated/Auth.grpc.pb.cc.i
+.PHONY : rpcGenerated/Auth.grpc.pb.cc.i
+
+rpcGenerated/Auth.grpc.pb.s: rpcGenerated/Auth.grpc.pb.cc.s
+.PHONY : rpcGenerated/Auth.grpc.pb.s
+
+# target to generate assembly for a file
+rpcGenerated/Auth.grpc.pb.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatserver.dir/build.make CMakeFiles/chatserver.dir/rpcGenerated/Auth.grpc.pb.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/authserver.dir/build.make CMakeFiles/authserver.dir/rpcGenerated/Auth.grpc.pb.cc.s
+.PHONY : rpcGenerated/Auth.grpc.pb.cc.s
+
+rpcGenerated/Auth.pb.o: rpcGenerated/Auth.pb.cc.o
+.PHONY : rpcGenerated/Auth.pb.o
+
+# target to build an object file
+rpcGenerated/Auth.pb.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatserver.dir/build.make CMakeFiles/chatserver.dir/rpcGenerated/Auth.pb.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/authserver.dir/build.make CMakeFiles/authserver.dir/rpcGenerated/Auth.pb.cc.o
+.PHONY : rpcGenerated/Auth.pb.cc.o
+
+rpcGenerated/Auth.pb.i: rpcGenerated/Auth.pb.cc.i
+.PHONY : rpcGenerated/Auth.pb.i
+
+# target to preprocess a source file
+rpcGenerated/Auth.pb.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatserver.dir/build.make CMakeFiles/chatserver.dir/rpcGenerated/Auth.pb.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/authserver.dir/build.make CMakeFiles/authserver.dir/rpcGenerated/Auth.pb.cc.i
+.PHONY : rpcGenerated/Auth.pb.cc.i
+
+rpcGenerated/Auth.pb.s: rpcGenerated/Auth.pb.cc.s
+.PHONY : rpcGenerated/Auth.pb.s
+
+# target to generate assembly for a file
+rpcGenerated/Auth.pb.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chatserver.dir/build.make CMakeFiles/chatserver.dir/rpcGenerated/Auth.pb.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/authserver.dir/build.make CMakeFiles/authserver.dir/rpcGenerated/Auth.pb.cc.s
+.PHONY : rpcGenerated/Auth.pb.cc.s
+
 threadpool/ThreadPool.o: threadpool/ThreadPool.cpp.o
 .PHONY : threadpool/ThreadPool.o
 
@@ -342,8 +481,18 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... authserver"
 	@echo "... chatserver"
 	@echo "... loggerd"
+	@echo "... authClient/Authentication.o"
+	@echo "... authClient/Authentication.i"
+	@echo "... authClient/Authentication.s"
+	@echo "... authServer/AuthServer.o"
+	@echo "... authServer/AuthServer.i"
+	@echo "... authServer/AuthServer.s"
+	@echo "... authServer/AuthServiceImpl.o"
+	@echo "... authServer/AuthServiceImpl.i"
+	@echo "... authServer/AuthServiceImpl.s"
 	@echo "... logger/LoggerClient.o"
 	@echo "... logger/LoggerClient.i"
 	@echo "... logger/LoggerClient.s"
@@ -365,6 +514,12 @@ help:
 	@echo "... reactor/ServerAcceptor.o"
 	@echo "... reactor/ServerAcceptor.i"
 	@echo "... reactor/ServerAcceptor.s"
+	@echo "... rpcGenerated/Auth.grpc.pb.o"
+	@echo "... rpcGenerated/Auth.grpc.pb.i"
+	@echo "... rpcGenerated/Auth.grpc.pb.s"
+	@echo "... rpcGenerated/Auth.pb.o"
+	@echo "... rpcGenerated/Auth.pb.i"
+	@echo "... rpcGenerated/Auth.pb.s"
 	@echo "... threadpool/ThreadPool.o"
 	@echo "... threadpool/ThreadPool.i"
 	@echo "... threadpool/ThreadPool.s"
