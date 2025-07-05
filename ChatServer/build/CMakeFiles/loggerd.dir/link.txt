@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -fsanitize=address CMakeFiles/loggerd.dir/logger/loggerd.cpp.o -o loggerd  /usr/lib/x86_64-linux-gnu/libfmt.so.9.1.0 

@@ -1,0 +1,4 @@
+/root/ChatServerOPEN/build/CMakeFiles/chatserver.dir
+/root/ChatServerOPEN/build/CMakeFiles/loggerd.dir
+/root/ChatServerOPEN/build/CMakeFiles/edit_cache.dir
+/root/ChatServerOPEN/build/CMakeFiles/rebuild_cache.dir
