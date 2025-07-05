@@ -25,12 +25,15 @@ int main(int argc, char *argv[])
 {
     QApplication ChatRoom(argc, argv);
     log_in loginDialog;
+
     if (loginDialog.exec() == QDialog::Accepted)
     {
-        client_widget client(nullptr,loginDialog.getsocket());
+        client_widget client(nullptr, loginDialog.getsocket());
         client.initialize(loginDialog.getname());
         client.show();
-        return ChatRoom.exec();
+        return ChatRoom.exec(); // 登录成功，进入主窗口事件循环
     }
-    return ChatRoom.exec();
+
+    return 0; // 用户退出程序
 }
+

@@ -1,5 +1,5 @@
 QT       += core gui
-QT       += core gui network
+QT       += network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -27,5 +27,12 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-RESOURCES += \
-    image.qrc
+INCLUDEPATH += C:/OpenSSL-Win64/include
+
+LIBS += "C:/OpenSSL-Win64/lib/VC/x64/MD/libssl.lib"
+LIBS += "C:/OpenSSL-Win64/lib/VC/x64/MD/libcrypto.lib"
+
+DISTFILES += \
+    public.pem
+
+

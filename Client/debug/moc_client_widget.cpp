@@ -7,6 +7,7 @@
 *****************************************************************************/
 
 #include "../client_widget.h"
+#include <QtGui/qtextcursor.h>
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>
@@ -40,8 +41,8 @@ constexpr auto qt_meta_stringdata_CLASSclient_widgetENDCLASS = QtMocHelpers::str
     "",
     "updateLoginTime",
     "sendMsg",
-    "readMsg",
-    "sendFile"
+    "sendFile",
+    "onFileTransferTimeout"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -93,9 +94,9 @@ Q_CONSTINIT const QMetaObject client_widget::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'sendMsg'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'readMsg'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'sendFile'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onFileTransferTimeout'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -110,8 +111,8 @@ void client_widget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 0: _t->onReadyRead(); break;
         case 1: _t->updateLoginTime(); break;
         case 2: _t->sendMsg(); break;
-        case 3: _t->readMsg(); break;
-        case 4: _t->sendFile(); break;
+        case 3: _t->sendFile(); break;
+        case 4: _t->onFileTransferTimeout(); break;
         default: ;
         }
     }
